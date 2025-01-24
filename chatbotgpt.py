@@ -6,6 +6,13 @@ st.title("ChatGPT-like clone")
 # Set OpenAI API key from Streamlit secrets
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
+# Add a selectbox to choose the GPT model
+model_options = ["gpt-3.5-turbo", "gpt-3.5-turbo-instruct", "gpt-3.5-turbo-1106", "gpt-3.5-turbo-0125"]
+selected_model = st.selectbox("Choose a GPT model:", model_options)
+
+# Set the selected model
+st.session_state["openai_model"] = selected_model
+
 # Set a default model
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
